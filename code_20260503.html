@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>筹码总数计算器</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "微软雅黑", sans-serif; }
+body { background-color: #f5f7fa; padding: 30px 20px; }
+.container { max-width: 500px; margin: 0 auto; }
+h2 { text-align: center; color: #333; margin-bottom: 30px; }
+.item { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 8px #00000010; }
+.label { font-size: 16px; color: #444; font-weight: 500; }
+input { width: 140px; height: 45px; border: 1px solid #ddd; border-radius: 8px; text-align: center; font-size: 18px; outline: none; }
+input:focus { border-color: #409eff; }
+.total-box { margin-top: 25px; background: #2d8cf0; color: #fff; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 10px #2d8cf030; }
+.total-text { font-size: 17px; margin-bottom: 8px; }
+.total-num { font-size: 28px; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>筹码数量计算器</h2>
+<div class="item">
+<span class="label">1000 筹码</span>
+<input type="number" class="c1000" placeholder="输入数量" min="0">
+</div>
+<div class="item">
+<span class="label">500 筹码</span>
+<input type="number" class="c500" placeholder="输入数量" min="0">
+</div>
+<div class="item">
+<span class="label">100 筹码</span>
+<input type="number" class="c100" placeholder="输入数量" min="0">
+</div>
+<div class="item">
+<span class="label">50 筹码</span>
+<input type="number" class="c50" placeholder="输入数量" min="0">
+</div>
+<div class="total-box">
+<div class="total-text">筹码总金额</div>
+<div class="total-num" id="total">0</div>
+</div>
+</div>
+<script>
+const i1000 = document.querySelector('.c1000');
+const i500 = document.querySelector('.c500');
+const i100 = document.querySelector('.c100');
+const i50 = document.querySelector('.c50');
+const totalDom = document.getElementById('total');
+function calcTotal() {
+let num1000 = Number(i1000.value) || 0;
+let num500 = Number(i500.value) || 0;
+let num100 = Number(i100.value) || 0;
+let num50 = Number(i50.value) || 0;
+let total = num1000 * 1000 + num500 * 500 + num100 * 100 + num50 * 50;
+totalDom.innerText = total.toLocaleString();
+}
+[i1000, i500, i100, i50].forEach(item => {
+item.addEventListener('input', calcTotal);
+});
+</script>
+</body>
+</html>
